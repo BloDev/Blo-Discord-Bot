@@ -27,7 +27,7 @@ module.exports = {
 	aliases: ['generate', 'teams'],
 	async execute(message) {
 		try {
-			const players = Object.values(await Player.find()).map(dict => dict.username);
+			const players = Object.values(await Player.find({ guild_id: message.guild.id })).map(dict => dict.username);
 
 			if (players.length < 10) return message.channel.send('There NEEDS to be 10 players... GET ON!');
 			if (players.length > 10) return message.channel.send('There are too many fraggers... Please remove some players!');

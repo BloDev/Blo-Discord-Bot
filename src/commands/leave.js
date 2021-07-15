@@ -6,9 +6,9 @@ module.exports = {
 	aliases: ['exit', 'quit'],
 	async execute(message) {
 		try {
-			const playerExists = await Player.exists({ _id: message.author.id });
+			const playerExists = await Player.exists({ _id: message.author.id, guild_id: message.guild.id });
 			if (playerExists) {
-				await Player.findByIdAndDelete(message.author.id);
+				await Player.deleteOne({ _id: message.author.id, guild_id: message.guild.id });
 				return message.reply('Jonathan "EliGE" Jablonowski is disappointed in you...');
 			}
 			return message.reply('You aren\'t even in the 5v5...');
