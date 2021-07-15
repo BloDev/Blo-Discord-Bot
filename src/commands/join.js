@@ -10,6 +10,7 @@ module.exports = {
 			if (!playerExists) {
 				await Player.create({
 					_id: message.author.id,
+					guild_id: message.guild.id,
 					username: message.author.username,
 				});
 				return message.reply('You are now ready to frag.');

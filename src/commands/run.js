@@ -37,12 +37,12 @@ module.exports = {
 			const teamA = players.slice(0, 5).join(', ');
 			const teamB = players.slice(5).join(', ');
 
-			const runEmbed = new Discord.MessageEmbed()
+			const embed = new Discord.MessageEmbed()
 				.setColor('#FF0000')
 				.setTitle('Teams')
 				.setDescription(`Team One: ${teamA}\nTeam Two: ${teamB}`);
 
-			return message.channel.send(runEmbed);
+			return message.channel.send(embed);
 		} catch {
 			return message.channel.send('An error occured with the database...');
 		}

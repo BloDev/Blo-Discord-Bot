@@ -27,6 +27,7 @@ module.exports = {
 				if (!playerExists) {
 					await Player.create({
 						_id: user.id,
+						guild_id: message.guild.id,
 						username: user.username,
 					});
 					return message.channel.send(`Added ${user.username}.`);

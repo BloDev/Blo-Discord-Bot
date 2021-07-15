@@ -28,11 +28,11 @@ module.exports = {
 
 		}).join('\n');
 
-		const helpEmbed = new Discord.MessageEmbed()
+		const embed = new Discord.MessageEmbed()
 			.setColor('#00FF00')
 			.setTitle('Commands')
 			.setDescription(helpDesc);
 
-		return message.channel.send(helpEmbed);
+		return message.channel.send(embed);
 	},
 };

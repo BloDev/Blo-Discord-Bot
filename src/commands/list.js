@@ -7,17 +7,17 @@ module.exports = {
 	aliases: ['players', 'fraggers'],
 	async execute(message) {
 		try {
-			const players = Object.values(await Player.find()).map(dict => dict.username);
+			const players = Object.values(await Player.find({ guild_id: message.guild.id })).map(dict => dict.username);
 			const playerText = players.join(', ');
 
-			const runEmbed = new Discord.MessageEmbed()
+			const embed = new Discord.MessageEmbed()
 				.setColor('#FFA500')
 				.setTitle(`Players (${players.length})`)
 				.setDescription(playerText);
 
-			message.channel.send(runEmbed);
+			return message.channel.send(embed);
 		} catch {
-			message.channel.send('An error occured with the database...');
+			return message.channel.send('An error occured with the database...');
 		}
 	},
 };
