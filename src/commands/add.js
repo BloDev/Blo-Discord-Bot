@@ -33,7 +33,8 @@ module.exports = {
 					return message.channel.send(`Added ${user.username}.`);
 				}
 				return message.channel.send(`${user.username} is already in the 5v5...`);
-			} catch {
+			} catch (e) {
+				console.error(e);
 				return message.channel.send('An error occured with the database...');
 			}
 		}

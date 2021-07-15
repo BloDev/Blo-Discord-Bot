@@ -12,7 +12,8 @@ module.exports = {
 				return message.reply('Jonathan "EliGE" Jablonowski is disappointed in you...');
 			}
 			return message.reply('You aren\'t even in the 5v5...');
-		} catch {
+		} catch (e) {
+			console.error(e);
 			return message.channel.send('An error occured with the database...');
 		}
 	},

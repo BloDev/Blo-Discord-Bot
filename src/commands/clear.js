@@ -20,7 +20,8 @@ module.exports = {
 
 			await Player.deleteMany({ guild_id: message.guild.id });
 			return message.channel.send('Cleared the 5v5 list.');
-		} catch {
+		} catch (e) {
+			console.error(e);
 			return message.channel.send('An error occured with the database...');
 		}
 	},

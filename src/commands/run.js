@@ -43,7 +43,8 @@ module.exports = {
 				.setDescription(`Team One: ${teamA}\nTeam Two: ${teamB}`);
 
 			return message.channel.send(embed);
-		} catch {
+		} catch (e) {
+			console.error(e);
 			return message.channel.send('An error occured with the database...');
 		}
 	},

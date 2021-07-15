@@ -29,7 +29,8 @@ module.exports = {
 					return message.channel.send(`Removed ${user.username}.`);
 				}
 				return message.channel.send(`${user.username} is not even in the 5v5...`);
-			} catch {
+			} catch (e) {
+				console.error(e);
 				return message.channel.send('An error occured with the database...');
 			}
 		}

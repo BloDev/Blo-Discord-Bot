@@ -16,7 +16,8 @@ module.exports = {
 				.setDescription(playerText);
 
 			return message.channel.send(embed);
-		} catch {
+		} catch (e) {
+			console.error(e);
 			return message.channel.send('An error occured with the database...');
 		}
 	},
