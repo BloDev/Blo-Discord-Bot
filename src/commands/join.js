@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const Player = require('../models/playerModel');
 
 module.exports = {
@@ -6,10 +7,11 @@ module.exports = {
 	aliases: ['5v5', 'frag'],
 	async execute(message) {
 		try {
-			const playerExists = await Player.exists({ _id: message.author.id, guild_id: message.guild.id });
+			const playerExists = await Player.exists({ user_id: message.author.id, guild_id: message.guild.id });
 			if (!playerExists) {
 				await Player.create({
-					_id: message.author.id,
+					_id: new mongoose.Types.ObjectId(),
+					user_id: message.author.id,
 					guild_id: message.guild.id,
 					username: message.author.username,
 				});

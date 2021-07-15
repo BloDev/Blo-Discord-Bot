@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const Player = require('../models/playerModel');
 
 function getUserFromMention(client, mention) {
@@ -23,10 +24,11 @@ module.exports = {
 			try {
 				const user = await getUserFromMention(client, args[0]);
 				if (!user) return message.channel.send(`Please refer to a valid user to add.\nThe correct command format is: **${process.env.PREFIX}${this.name} ${this.usage}**`);
-				const playerExists = await Player.exists({ _id: user.id, guild_id: message.guild.id });
+				const playerExists = await Player.exists({ user_id: user.id, guild_id: message.guild.id });
 				if (!playerExists) {
 					await Player.create({
-						_id: user.id,
+						_id: new mongoose.Types.ObjectId(),
+						user_id: user.id,
 						guild_id: message.guild.id,
 						username: user.username,
 					});
