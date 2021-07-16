@@ -24,7 +24,7 @@ module.exports = {
 			try {
 				const user = await getUserFromMention(client, args[0]);
 				if (!user) return message.channel.send(`Please refer to a valid user to add.\nThe correct command format is: **${process.env.PREFIX}${this.name} ${this.usage}**`);
-				if (user.bot) return message.channel.send('You cannot add me.');
+				if (user.bot) return message.channel.send('You cannot add bots.');
 				const playerExists = await Player.exists({ user_id: user.id, guild_id: message.guild.id });
 				if (!playerExists) {
 					await Player.create({
