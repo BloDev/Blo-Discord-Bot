@@ -20,6 +20,7 @@ module.exports = {
 	description: 'adds @user to the 5v5 list',
 	usage: ['[@user]'],
 	async execute(message, args, client) {
+		if (message.channel.type === 'dm') return message.channel.send('This command only works within a server.');
 		if (args[0]) {
 			try {
 				const user = await getUserFromMention(client, args[0]);

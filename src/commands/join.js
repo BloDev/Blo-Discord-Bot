@@ -6,6 +6,7 @@ module.exports = {
 	description: 'joins the 5v5',
 	aliases: ['5v5', 'frag'],
 	async execute(message) {
+		if (message.channel.type === 'dm') return message.channel.send('This command only works within a server.');
 		try {
 			const playerExists = await Player.exists({ user_id: message.author.id, guild_id: message.guild.id });
 			if (!playerExists) {

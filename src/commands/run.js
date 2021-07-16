@@ -5,14 +5,11 @@ function shuffle(array) {
 
 	let currentIndex = array.length, temporaryValue, randomIndex;
 
-	// While there remain elements to shuffle...
 	while (currentIndex !== 0) {
 
-		// Pick a remaining element...
 		randomIndex = Math.floor(Math.random() * currentIndex);
 		currentIndex -= 1;
 
-		// And swap it with the current element.
 		temporaryValue = array[currentIndex];
 		array[currentIndex] = array[randomIndex];
 		array[randomIndex] = temporaryValue;
@@ -26,6 +23,7 @@ module.exports = {
 	description: 'runs the 5v5',
 	aliases: ['generate', 'teams'],
 	async execute(message) {
+		if (message.channel.type === 'dm') return message.channel.send('This command only works within a server.');
 		try {
 			const players = Object.values(await Player.find({ guild_id: message.guild.id })).map(dict => dict.username);
 

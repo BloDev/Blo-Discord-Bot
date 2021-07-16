@@ -5,6 +5,7 @@ module.exports = {
 	name: 'clear',
 	description: 'clears the 5v5 list',
 	async execute(message) {
+		if (message.channel.type === 'dm') return message.channel.send('This command only works within a server.');
 		try {
 			const players = Object.values(await Player.find({ guild_id: message.guild.id })).map(dict => dict.username);
 			if (!players.length) return message.channel.send('No one is currently in the 5v5...');

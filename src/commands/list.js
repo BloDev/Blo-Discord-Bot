@@ -6,6 +6,7 @@ module.exports = {
 	description: 'lists the players currently in the 5v5',
 	aliases: ['players', 'fraggers'],
 	async execute(message) {
+		if (message.channel.type === 'dm') return message.channel.send('This command only works within a server.');
 		try {
 			const players = Object.values(await Player.find({ guild_id: message.guild.id })).map(dict => dict.username);
 			const playerText = players.join(', ');
