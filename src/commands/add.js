@@ -25,19 +25,23 @@ module.exports = {
 				const user = await getUserFromMention(client, args[0]);
 				if (!user) return message.channel.send(`Please refer to a valid user to add.\nThe correct command format is: **${process.env.PREFIX}${this.name} ${this.usage}**`);
 				if (user.bot) return message.channel.send('You cannot add bots.');
-				const playerExists = await Player.exists({ user_id: user.id, guild_id: message.guild.id });
-				if (!playerExists) {
-					await Player.create({
-						_id: new mongoose.Types.ObjectId(),
-						user_id: user.id,
-						guild_id: message.guild.id,
-						username: user.username,
-					});
-					return message.channel.send(`Added ${user.username}.`);
+				try {
+					const playerExists = await Player.exists({ user_id: user.id, guild_id: message.guild.id });
+					if (!playerExists) {
+						await Player.create({
+							_id: new mongoose.Types.ObjectId(),
+							user_id: user.id,
+							guild_id: message.guild.id,
+							username: user.username,
+						});
+						return message.channel.send(`Added ${user.username}.`);
+					}
+					return message.channel.send(`${user.username} is already in the 5v5...`);
+				} catch (e) {
+					console.error(e);
+					return message.channel.send('An error occured with the database...');
 				}
-				return message.channel.send(`${user.username} is already in the 5v5...`);
 			} catch (e) {
-				console.error(e);
 				return message.channel.send(`Please refer to a valid user to add.\nThe correct command format is: **${process.env.PREFIX}${this.name} ${this.usage}**`);
 			}
 		}

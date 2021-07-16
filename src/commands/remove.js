@@ -23,14 +23,18 @@ module.exports = {
 			try {
 				const user = await getUserFromMention(client, args[0]);
 				if (!user) return message.channel.send(`Please refer to a valid user to remove.\nThe correct command format is: **${process.env.PREFIX}${this.name} ${this.usage}**`);
-				const playerExists = await Player.exists({ user_id: user.id, guild_id: message.guild.id });
-				if (playerExists) {
-					await Player.deleteOne({ user_id: user.id, guild_id: message.guild.id });
-					return message.channel.send(`Removed ${user.username}.`);
+				try {
+					const playerExists = await Player.exists({ user_id: user.id, guild_id: message.guild.id });
+					if (playerExists) {
+						await Player.deleteOne({ user_id: user.id, guild_id: message.guild.id });
+						return message.channel.send(`Removed ${user.username}.`);
+					}
+					return message.channel.send(`${user.username} is not even in the 5v5...`);
+				} catch (e) {
+					console.error(e);
+					return message.channel.send('An error occured with the database...');
 				}
-				return message.channel.send(`${user.username} is not even in the 5v5...`);
 			} catch (e) {
-				console.error(e);
 				return message.channel.send(`Please refer to a valid user to remove.\nThe correct command format is: **${process.env.PREFIX}${this.name} ${this.usage}**`);
 			}
 		}
