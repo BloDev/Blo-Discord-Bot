@@ -31,7 +31,7 @@ module.exports = {
 				return message.channel.send(`${user.username} is not even in the 5v5...`);
 			} catch (e) {
 				console.error(e);
-				return message.channel.send('An error occured with the database...');
+				return message.channel.send(`Please refer to a valid user to remove.\nThe correct command format is: **${process.env.PREFIX}${this.name} ${this.usage}**`);
 			}
 		}
 		return message.channel.send(`Please use the correct command format: **${process.env.PREFIX}${this.name} ${this.usage}**`);

@@ -15,9 +15,9 @@ module.exports = {
 					guild_id: message.guild.id,
 					username: message.author.username,
 				});
-				return message.reply('You are now ready to frag.');
+				return message.reply('you are now ready to frag.');
 			}
-			return message.reply('You are already in the 5v5...');
+			return message.reply('you are already in the 5v5...');
 		} catch (e) {
 			console.error(e);
 			message.channel.send('An error occured with the database...');
