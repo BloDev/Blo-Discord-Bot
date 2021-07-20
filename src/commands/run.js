@@ -38,7 +38,7 @@ module.exports = {
 			const embed = new Discord.MessageEmbed()
 				.setColor('#FF0000')
 				.setTitle('Teams')
-				.setDescription(`Team One: ${teamA}\nTeam Two: ${teamB}`);
+				.setDescription(`**Team One:**\n${teamA}\n\n**Team Two:**\n${teamB}`);
 
 			return message.channel.send(embed);
 		} catch (e) {

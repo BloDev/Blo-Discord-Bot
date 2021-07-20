@@ -46,8 +46,8 @@ mongoose.connect(process.env.DB, {
 	.then(() => {
 		console.log('Connected to the database.');
 	})
-	.catch(err => {
-		console.log('Failed to connect to the database.\n', err);
+	.catch(e => {
+		console.error('Failed to connect to the database.\n', e);
 	});
 
 client.login(process.env.TOKEN);
