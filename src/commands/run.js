@@ -20,7 +20,7 @@ function shuffle(array) {
 
 module.exports = {
   name: 'run',
-  description: 'runs the 5v5',
+  description: 'generates the teams for the 5v5',
   aliases: ['generate', 'teams'],
   async execute(message) {
     if (message.channel.type === 'dm') return message.channel.send('This command only works within a server.');
